@@ -31,7 +31,7 @@ function App() {
 
       <div>
         <Route render={() => <Home />} path="/home" />
-        <Route render={() => <Result />} path="/result" />
+        <Route render={() => <Result />} path="/result:data" />
       </div>
     </Router>
   );

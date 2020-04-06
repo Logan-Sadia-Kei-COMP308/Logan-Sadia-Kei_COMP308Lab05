@@ -11,7 +11,7 @@ function Result(props) {
     sentenceNumber: "",
     uploadFile: "",
     articleContent: "",
-    summary: ""
+    summary: "",
   });
 
   const [showLoading, setShowLoading] = useState(false);
@@ -42,7 +42,11 @@ function Result(props) {
         <Jumbotron>
           <Form.Group>
             <Form.Label>Summary</Form.Label>
-            <Form.Control type="text" id="summary" name="summary" value={article.summary}
+            <Form.Control
+              type="text"
+              id="summary"
+              name="summary"
+              value={article.summary}
             />
           </Form.Group>
         </Jumbotron>
