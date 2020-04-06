@@ -3,7 +3,6 @@ import axios from "axios";
 import Spinner from "react-bootstrap/Spinner";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import { withRouter } from "react-router-dom";
 
 function Result(props) {
@@ -16,6 +15,10 @@ function Result(props) {
 
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/result";
+
+  // retrieve the summary result from Home.js
+  let state = props.location.state;
+  let summary = state.articleData.summary;
 
   useEffect(() => {
     setShowLoading(false);
@@ -43,10 +46,12 @@ function Result(props) {
           <Form.Group>
             <Form.Label>Summary</Form.Label>
             <Form.Control
-              type="text"
-              id="summary"
+              as="textarea"
+              rows="10"
               name="summary"
-              value={article.summary}
+              id="summary"
+              value={summary}
+              readOnly
             />
           </Form.Group>
         </Jumbotron>

@@ -49,32 +49,15 @@ module.exports = (summarizableArticle, numberOfSentences) => {
         // re-sort by ascending sentenceId so that the sentences are sorted in the original order
         scoresArray.sort((a, b) => parseInt(a.sentenceId) < parseInt(b.sentenceId) ? -1 : 1);
 
-        // return the summary as a paragraph
         return scoresArray
-            .map(item => sentences[item.sentenceId])
+            .map(item => {
+                // capitalize back the first letter of each sentence
+                return sentences[item.sentenceId][0].toUpperCase() + sentences[item.sentenceId].slice(1);
+            })
             .join('. ');
+
     };
 
     // return result
     return summarize(summarizableArticle, numberOfSentences);
 }
-
-// // caller
-// // load file
-// const textSummarizer = require('./TextSummarizer')
-
-// // input
-// let summarizableArticle = "One of the most popular metrics used in search relevance, text mining, and information retrieval is the term frequency - inverse document frequency score, or tf-idf for short. In essence, tf-idf measures how significant a word is to a particular document. The tf-idf metric therefore only makes sense in the context of a word in a document that's part of a larger corpus of documents. Imagine you have a corpus of documents, like blog posts on varying topics, that you want to make searchable. The end user of your application runs a search query for fashion style. How do you then find matching documents and rank them by relevance? The tf-idf score is made of two separate but related components. The first is term frequency, or the relative frequency of a specific term in a given document. If a 100-word blog post contains the word fashion four times, then the term frequency of the word fashion is 4% for that one document. Note that term frequency only requires a single term and a single document as parameters; the full corpus of documents is not required for the term frequency component of tf-idf. Term frequency by itself is not sufficient to determine relevance, however. Words like this and the appear very frequently in most text and will have high term frequencies, but those words are not typically relevant to any search.";
-// const NUM_SENTENCE = 3;
-
-// // run summarizer
-// let summary = textSummarizer(summarizableArticle, NUM_SENTENCE);
-
-// // display the result
-// console.log("=====original text=====");
-// console.log(summarizableArticle);
-// console.log("\n");
-
-// console.log(`=====${NUM_SENTENCE}-sentence summary=====`);
-// console.log(summary);
-// console.log("\n");
