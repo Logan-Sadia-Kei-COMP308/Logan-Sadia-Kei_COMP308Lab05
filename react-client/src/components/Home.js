@@ -11,49 +11,42 @@ import { withRouter } from "react-router-dom";
 function Home(props) {
   const [article, setArticle] = useState({
     sentenceNumber: "",
-    uploadFileName: "",
-    uploadFileContent: ""
+    uploadFile: "",
+    articleContent: ""
   });
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/result";
-  let text = "";
-
-  const readFile = function (event) {
-
-    var input = event.target;
-    var reader = new FileReader();
-
-    reader.onload = function () {
-      text = reader.result;
-      console.log(text);
-    };
-    reader.readAsText(input.files[0]);
-
-    //
-    event.persist();
-    setArticle({ ...article, [event.target.name]: event.target.value });
-  };
-
-
-  const data = {
+  let data = {
     sentenceNumber: article.sentenceNumber,
-    uploadFileName: article.uploadFileName,
-    uploadFileContent: text
+    uploadFile: article.uploadFile,
+    articleContent: article.articleContent
   }
+  const readFile = async function (e) {
+    e.persist();
+    setArticle({ ...article, [e.target.name]: e.target.value });
+
+    let input = e.target;
+    let text = await new Response(input.files[0]).text();
+
+    let temp = document.getElementById("articleContent");
+    temp.value = text;
+  };
 
 
   const summerize = (e) => {
+    data.articleContent = document.getElementById("articleContent").value;
     setShowLoading(true);
     axios
-      .post(apiUrl, data)
-      .then((result) => {
+    .post(apiUrl, data)
+    .then((result) => {
         setShowLoading(false);
         props.history.push("/result/");
-      })
-      .catch((error) => setShowLoading(false));
+    })
+    .catch((error) => setShowLoading(false));
   };
 
   const onChange = (e) => {
+      console.log(typeof(e.target.name));
     e.persist();
     setArticle({ ...article, [e.target.name]: e.target.value });
   };
@@ -89,9 +82,19 @@ function Home(props) {
                 name="uploadFile"
                 id="uploadFile"
                 required
-                class="custom-file"
-                value={article.uploadFileName}
+                className="custom-file"
+                value={article.uploadFile}
                 onChange={readFile}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Control
+                as="textarea"
+                rows="10"
+                name="articleContent"
+                id="articleContent"
+                value={article.articleContent}
+                readOnly
               />
             </Form.Group>
             <Form.Group>
