@@ -82,7 +82,7 @@ function Result(props) {
           </Form.Group>
           <div className="col-12 text-center">
             <a className="col-2 btn btn-outline-info btn-margin" href="/home">
-                Summerize Next
+                Summarize Next
             </a>
         </div>
 

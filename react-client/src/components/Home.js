@@ -32,7 +32,7 @@ function Home(props) {
     setArticle({ ...article, [e.target.name]: e.target.value, ["articleContent"]: text });
   };
 
-  const summerize = (e) => {
+  const summarize = (e) => {
     // prevent default event(on submit)
     e.preventDefault();
 
@@ -59,14 +59,14 @@ function Home(props) {
   return (
     <div className="container">
       <div className="span12 div-style">
-        <h2 className="h2-style text-info">Home - Article Summerizer App</h2>
+        <h2 className="h2-style text-info">Home - Article summarizer App</h2>
         {showLoading && (
           <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
         <Jumbotron>
-          <Form onSubmit={summerize}>
+          <Form onSubmit={summarize}>
             <Form.Group>
               <Form.Label className="font-weight-bold">Enter the number of required Sentences.</Form.Label>
               <Form.Control
@@ -82,7 +82,7 @@ function Home(props) {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label className="font-weight-bold">Choose a txt file to Summerize</Form.Label>
+              <Form.Label className="font-weight-bold">Choose a txt file to summarize</Form.Label>
               <Form.Control
                 type="file"
                 accept=".txt"
@@ -95,7 +95,7 @@ function Home(props) {
               />
             </Form.Group>
             <Form.Group>
-                <Form.Label className="font-weight-bold">Preview</Form.Label>
+                <Form.Label className="font-weight-bold">Preview (content here will be summarized)</Form.Label>
               <Form.Control
                 as="textarea"
                 rows="10"
@@ -107,8 +107,8 @@ function Home(props) {
               />
             </Form.Group>
             <div className="col-12 text-center">
-                <Button variant="outline-info col-2" type="Summerize">
-                Summerize
+                <Button variant="outline-info col-2" type="summarize">
+                summarize
                 </Button>
             </div>
             
