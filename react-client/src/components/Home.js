@@ -33,19 +33,25 @@ function Home(props) {
   };
 
   const summerize = (e) => {
+    // prevent default event(on submit)
+    e.preventDefault();
+
     data.articleContent = document.getElementById("articleContent").value;
     setShowLoading(true);
     axios
-    .post(apiUrl, data)
-    .then((result) => {
+      .post(apiUrl, data)
+      .then((response) => {
         setShowLoading(false);
+        // console.log("!?!?!?!?");
+        // console.log(response.data);
+
         props.history.push("/result/");
-    })
-    .catch((error) => setShowLoading(false));
+      })
+      .catch((error) => setShowLoading(false));
   };
 
   const onChange = (e) => {
-      console.log(typeof(e.target.name));
+    console.log(typeof (e.target.name));
     e.persist();
     setArticle({ ...article, [e.target.name]: e.target.value });
   };
