@@ -13,8 +13,9 @@ exports.render = function (req, res) {
 exports.renderResult = function (req, res) {
 
   console.log("!!!");
-  if (typeof (req.body.uploadFileName) !== "undefined") {
-    console.log(req.body.uploadFileName);
+  if (typeof (req.body.uploadFile) !== "undefined") {
+    console.log(req.body.uploadFile);
+    console.log(req.body.uploadFileContent);
   } else {
     console.log("undefined!!");
   }

@@ -11,8 +11,8 @@ import { withRouter } from "react-router-dom";
 function Home(props) {
   const [article, setArticle] = useState({
     sentenceNumber: "",
-    uploadFileName: "",
-    uploadFileContent: ""
+    uploadFile: "",
+    // uploadFileContent: ""
   });
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/result";
@@ -20,27 +20,29 @@ function Home(props) {
 
   const readFile = function (event) {
 
+    // read file content from the input type of file
     var input = event.target;
     var reader = new FileReader();
 
     reader.onload = function () {
       text = reader.result;
-      console.log(text);
+      //      console.log(text);
     };
+
     reader.readAsText(input.files[0]);
 
-    //
+    console.log(text);
+    // set uploaded filename/filepath to data
     event.persist();
     setArticle({ ...article, [event.target.name]: event.target.value });
-  };
 
+  };
 
   const data = {
     sentenceNumber: article.sentenceNumber,
-    uploadFileName: article.uploadFileName,
-    uploadFileContent: text
+    uploadFile: article.uploadFile,
+    // uploadFileContent: article.uploadFileContent
   }
-
 
   const summerize = (e) => {
     setShowLoading(true);
@@ -57,6 +59,7 @@ function Home(props) {
     e.persist();
     setArticle({ ...article, [e.target.name]: e.target.value });
   };
+
   return (
     <div className="container">
       <div className="span12 div-style">
@@ -90,7 +93,7 @@ function Home(props) {
                 id="uploadFile"
                 required
                 class="custom-file"
-                value={article.uploadFileName}
+                value={article.uploadFile}
                 onChange={readFile}
               />
             </Form.Group>

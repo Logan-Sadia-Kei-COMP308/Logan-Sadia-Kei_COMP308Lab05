@@ -39,9 +39,6 @@ function Home(props) {
     uploadFileContent: text
   }
 
-
-
-
   const summerize = (e) => {
     setShowLoading(true);
     axios
