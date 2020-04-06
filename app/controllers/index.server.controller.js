@@ -12,10 +12,27 @@ exports.render = function (req, res) {
 
 exports.renderResult = function (req, res) {
   console.log("!!!");
-  if (typeof req.body.uploadFile !== "undefined") {
-    console.log(req.body.uploadFile);
-    console.log(req.body.uploadFileContent);
-  } else {
-    console.log("undefined!!");
-  }
+
+  const textSummarizer = require("../../TextSummarizer");
+  const sentenceNumber = req.body.sentenceNumber;
+  const articleContent = req.body.articleContent;
+
+  // run summarizer
+  let summary = textSummarizer(articleContent, sentenceNumber);
+
+  // display the result
+  console.log("=====original text=====");
+  console.log(articleContent);
+  console.log("\n");
+
+  console.log(`=====${sentenceNumber}-sentence summary=====`);
+  console.log(summary);
+  console.log("\n");
+
+  res.status(200).json({
+    title: "Article Summarizer App",
+    sentenceNumber: sentenceNumber,
+    articleContent: articleContent,
+    summary: summary,
+  });
 };

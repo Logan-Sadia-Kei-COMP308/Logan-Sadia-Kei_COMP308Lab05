@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "react-bootstrap/Spinner";
 import Jumbotron from "react-bootstrap/Jumbotron";
@@ -7,31 +7,29 @@ import Button from "react-bootstrap/Button";
 import { withRouter } from "react-router-dom";
 
 function Result(props) {
-  const [student, setStudent] = useState({
-    _id: "",
-    studentId: "",
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    email: "",
-    password: "",
-    program: "",
-    address: "",
-    city: "",
+  const [article, setArticle] = useState({
+    sentenceNumber: "",
+    uploadFile: "",
+    articleContent: "",
+    summary: ""
   });
+
   const [showLoading, setShowLoading] = useState(false);
-  const apiUrl = "http://localhost:3000/";
+  const apiUrl = "http://localhost:3000/result";
 
-  const summerize = (e) => {
-    setShowLoading(true);
-    e.preventDefault();
-    const data = {};
-  };
+  useEffect(() => {
+    setShowLoading(false);
+    //call api
+    const fetchData = async () => {
+      const result = await axios(apiUrl);
+      setArticle(result.data);
+      console.log(result.data);
+      setShowLoading(false);
+    };
 
-  const onChange = (e) => {
-    e.persist();
-    setStudent({ ...student, [e.target.name]: e.target.value });
-  };
+    fetchData();
+  }, []);
+
   return (
     <div className="container">
       <div className="span12 div-style">
@@ -43,8 +41,9 @@ function Result(props) {
         )}
         <Jumbotron>
           <Form.Group>
-            <Form.Label>Choose a txt file to Summerize</Form.Label>
-            <Form.Control type="file" id="uploadFile" />
+            <Form.Label>Summary</Form.Label>
+            <Form.Control type="text" id="summary" name="summary" value={article.summary}
+            />
           </Form.Group>
         </Jumbotron>
       </div>

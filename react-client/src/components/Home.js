@@ -11,50 +11,40 @@ function Home(props) {
   const [article, setArticle] = useState({
     sentenceNumber: "",
     uploadFile: "",
-    uploadFileContent: "",
+    articleContent: "",
   });
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/result";
-  var text = "";
-
-  const readFile = function (event) {
-    var input = event.target;
-    console.log("input =>" + input.name);
-    var reader = new FileReader();
-
-    reader.onload = function () {
-      text = reader.result;
-      console.log("This is text");
-      console.log(text);
-    };
-    console.log("file name =>" + input.files[0].name);
-    console.log("Text outside =>" + text);
-    reader.readAsText(input.files[0]);
-
-    console.log(text);
-    // set uploaded filename/filepath to data
-    event.persist();
-    setArticle({ ...article, [event.target.name]: event.target.value });
-
-  const data = {
+  let data = {
     sentenceNumber: article.sentenceNumber,
     uploadFile: article.uploadFile,
-    uploadFileContent: text,
+    articleContent: article.articleContent,
   };
-  console.log("Text Again =>" + text);
+  const readFile = async function (e) {
+    e.persist();
+    setArticle({ ...article, [e.target.name]: e.target.value });
+
+    let input = e.target;
+    let text = await new Response(input.files[0]).text();
+
+    let temp = document.getElementById("articleContent");
+    temp.value = text;
+  };
+
   const summerize = (e) => {
+    data.articleContent = document.getElementById("articleContent").value;
     setShowLoading(true);
     axios
       .post(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
-        props.history.push("/result/");
+        props.history.push("/result/" + data);
       })
       .catch((error) => setShowLoading(false));
-    console.log("Inside summerize");
   };
 
   const onChange = (e) => {
+    console.log(typeof e.target.name);
     e.persist();
     setArticle({ ...article, [e.target.name]: e.target.value });
   };
@@ -69,7 +59,11 @@ function Home(props) {
           </Spinner>
         )}
         <Jumbotron>
-          <Form onSubmit={summerize}>
+          <Form
+            onSubmit={summerize}
+            method="POST"
+            type="enctype=multipart/form-data"
+          >
             <Form.Group>
               <Form.Label>Enter the number of required Sentences.</Form.Label>
               <Form.Control
@@ -91,9 +85,19 @@ function Home(props) {
                 name="uploadFile"
                 id="uploadFile"
                 required
-                class="custom-file"
+                className="custom-file"
                 value={article.uploadFile}
                 onChange={readFile}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Control
+                as="textarea"
+                rows="10"
+                name="articleContent"
+                id="articleContent"
+                value={article.articleContent}
+                readOnly
               />
             </Form.Group>
             <Form.Group>
