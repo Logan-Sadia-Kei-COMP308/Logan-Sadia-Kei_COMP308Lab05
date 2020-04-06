@@ -31,10 +31,10 @@ function Home(props) {
     console.log("Text outside =>" + text);
     reader.readAsText(input.files[0]);
 
-    //
+    console.log(text);
+    // set uploaded filename/filepath to data
     event.persist();
     setArticle({ ...article, [event.target.name]: event.target.value });
-  };
 
   const data = {
     sentenceNumber: article.sentenceNumber,
@@ -58,6 +58,7 @@ function Home(props) {
     e.persist();
     setArticle({ ...article, [e.target.name]: e.target.value });
   };
+
   return (
     <div className="container">
       <div className="span12 div-style">
@@ -91,7 +92,7 @@ function Home(props) {
                 id="uploadFile"
                 required
                 class="custom-file"
-                value={article.uploadFileName}
+                value={article.uploadFile}
                 onChange={readFile}
               />
             </Form.Group>
