@@ -32,13 +32,20 @@ function Home(props) {
   };
 
   const summerize = (e) => {
+    // prevent default event(on submit)
+    e.preventDefault();
+
     data.articleContent = document.getElementById("articleContent").value;
     setShowLoading(true);
     axios
       .post(apiUrl, data)
-      .then((result) => {
+      .then((response) => {
         setShowLoading(false);
-        props.history.push("/result/" + data);
+        // console.log("!?!?!?!?");
+        console.log(response.data);
+        var summary = response.data.summary;
+
+        props.history.push("/result/" + response.data.summary);
       })
       .catch((error) => setShowLoading(false));
   };
