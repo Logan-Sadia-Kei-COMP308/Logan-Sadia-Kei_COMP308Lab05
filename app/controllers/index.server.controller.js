@@ -9,3 +9,16 @@ exports.render = function (req, res) {
     title: "Student - Course App",
   });
 };
+
+exports.renderResult = function (req, res) {
+
+  console.log("!!!");
+  if (typeof (req.body.uploadFileName) !== "undefined") {
+    console.log(req.body.uploadFileName);
+  } else {
+    console.log("undefined!!");
+  }
+  // res.render("index", {
+  //   title: "Student - Course App",
+  // });
+};

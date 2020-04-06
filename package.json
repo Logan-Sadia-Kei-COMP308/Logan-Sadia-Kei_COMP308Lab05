@@ -26,7 +26,6 @@
     "method-override": "^2.3.10",
     "mongoose": "^5.8.9",
     "morgan": "^1.9.1",
-    "react-native": "^0.62.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
   },
