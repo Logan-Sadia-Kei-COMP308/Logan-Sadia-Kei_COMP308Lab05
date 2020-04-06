@@ -12,7 +12,6 @@ exports.render = function (req, res) {
 
 exports.renderResult = function (req, res) {
 
-<<<<<<< HEAD
     console.log("!!!");
 
     const textSummarizer = require('../../TextSummarizer')
@@ -43,16 +42,3 @@ exports.renderResult = function (req, res) {
         summary: summary
     });
 };
-=======
-  console.log("!!!");
-  if (typeof (req.body.uploadFile) !== "undefined") {
-    console.log(req.body.uploadFile);
-    console.log(req.body.uploadFileContent);
-  } else {
-    console.log("undefined!!");
-  }
-  // res.render("index", {
-  //   title: "Student - Course App",
-  // });
-};
->>>>>>> dfb3c6918ff2e1833e0834c8e8b9d0feed9fcd96
