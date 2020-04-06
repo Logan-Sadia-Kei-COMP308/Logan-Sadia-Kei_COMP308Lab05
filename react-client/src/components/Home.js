@@ -12,6 +12,7 @@ function Home(props) {
   const [article, setArticle] = useState({
     sentenceNumber: "",
     uploadFile: "",
+<<<<<<< HEAD
     articleContent: ""
   });
   const [showLoading, setShowLoading] = useState(false);
@@ -31,8 +32,43 @@ function Home(props) {
     let temp = document.getElementById("articleContent");
     temp.value = text;
   };
+=======
+    // uploadFileContent: ""
+  });
+  const [showLoading, setShowLoading] = useState(false);
+  const apiUrl = "http://localhost:3000/result";
+  let text = "";
 
+  const readFile = function (event) {
 
+    // read file content from the input type of file
+    var input = event.target;
+    var reader = new FileReader();
+
+    reader.onload = function () {
+      text = reader.result;
+      //      console.log(text);
+    };
+
+    reader.readAsText(input.files[0]);
+
+    console.log(text);
+    // set uploaded filename/filepath to data
+    event.persist();
+    setArticle({ ...article, [event.target.name]: event.target.value });
+>>>>>>> dfb3c6918ff2e1833e0834c8e8b9d0feed9fcd96
+
+  };
+
+<<<<<<< HEAD
+=======
+  const data = {
+    sentenceNumber: article.sentenceNumber,
+    uploadFile: article.uploadFile,
+    // uploadFileContent: article.uploadFileContent
+  }
+
+>>>>>>> dfb3c6918ff2e1833e0834c8e8b9d0feed9fcd96
   const summerize = (e) => {
     data.articleContent = document.getElementById("articleContent").value;
     setShowLoading(true);
@@ -50,6 +86,7 @@ function Home(props) {
     e.persist();
     setArticle({ ...article, [e.target.name]: e.target.value });
   };
+
   return (
     <div className="container">
       <div className="span12 div-style">
@@ -82,7 +119,11 @@ function Home(props) {
                 name="uploadFile"
                 id="uploadFile"
                 required
+<<<<<<< HEAD
                 className="custom-file"
+=======
+                class="custom-file"
+>>>>>>> dfb3c6918ff2e1833e0834c8e8b9d0feed9fcd96
                 value={article.uploadFile}
                 onChange={readFile}
               />
