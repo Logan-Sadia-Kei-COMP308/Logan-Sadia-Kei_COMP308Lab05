@@ -6,14 +6,11 @@
 exports.render = function (req, res) {
     //display index.ejs
     res.render("index", {
-        title: "Student - Course App",
+        title: "Home - Article Summarizer App",
     });
 };
 
 exports.renderResult = function (req, res) {
-
-    console.log("!!!");
-
     const textSummarizer = require('../../TextSummarizer')
     const sentenceNumber = req.body.sentenceNumber;
     const articleContent = req.body.articleContent;
@@ -30,13 +27,8 @@ exports.renderResult = function (req, res) {
     console.log(summary);
     console.log("\n");
 
-
-    // res.render("index", {
-    //   title: "Student - Course App",
-    // });
-
     res.status(200).json({
-        title: "Article Summarizer App",
+        title: "Result - Article Summarizer App",
         sentenceNumber: sentenceNumber,
         articleContent: articleContent,
         summary: summary

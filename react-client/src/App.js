@@ -19,19 +19,19 @@ import Result from "./components/Result";
 function App() {
   return (
     <Router>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="dark" expand="lg" variant="dark">
+        <Navbar.Brand>Article Summarizer App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/result">Result</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
 
       <div>
-        <Route render={() => <Home />} path="/home" />
-        <Route render={() => <Result />} path="/result" />
+      <Route render={() => <Home />} path="/home" />
+      <Route render={() => <Result />} path="/result" />
       </div>
     </Router>
   );

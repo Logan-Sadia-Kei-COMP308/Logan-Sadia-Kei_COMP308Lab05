@@ -10,7 +10,7 @@ module.exports = function (app) {
   app.get("/", index.render); //go to http://localhost:3000/
 
   app.route("/result")
-    .get(index.renderResult)
+    .get(index.render)
     .post(index.renderResult);
 
 };

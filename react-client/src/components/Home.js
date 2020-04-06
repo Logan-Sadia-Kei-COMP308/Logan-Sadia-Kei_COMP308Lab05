@@ -16,6 +16,7 @@ function Home(props) {
   });
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/result";
+
   let data = {
     sentenceNumber: article.sentenceNumber,
     uploadFile: article.uploadFile,
@@ -28,8 +29,7 @@ function Home(props) {
     let input = e.target;
     let text = await new Response(input.files[0]).text();
 
-    let temp = document.getElementById("articleContent");
-    temp.value = text;
+    setArticle({ ...article, [e.target.name]: e.target.value, ["articleContent"]: text });
   };
 
   const summerize = (e) => {
@@ -52,7 +52,6 @@ function Home(props) {
   };
 
   const onChange = (e) => {
-    console.log(typeof (e.target.name));
     e.persist();
     setArticle({ ...article, [e.target.name]: e.target.value });
   };
@@ -60,7 +59,7 @@ function Home(props) {
   return (
     <div className="container">
       <div className="span12 div-style">
-        <h2 className="h2-style">Choose a file to Summerize</h2>
+        <h2 className="h2-style text-info">Home - Article Summerizer App</h2>
         {showLoading && (
           <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
@@ -69,7 +68,7 @@ function Home(props) {
         <Jumbotron>
           <Form onSubmit={summerize}>
             <Form.Group>
-              <Form.Label>Enter the number of required Sentences.</Form.Label>
+              <Form.Label className="font-weight-bold">Enter the number of required Sentences.</Form.Label>
               <Form.Control
                 type="number"
                 name="sentenceNumber"
@@ -83,9 +82,10 @@ function Home(props) {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Choose a txt file to Summerize</Form.Label>
+              <Form.Label className="font-weight-bold">Choose a txt file to Summerize</Form.Label>
               <Form.Control
                 type="file"
+                accept=".txt"
                 name="uploadFile"
                 id="uploadFile"
                 required
@@ -95,19 +95,23 @@ function Home(props) {
               />
             </Form.Group>
             <Form.Group>
+                <Form.Label className="font-weight-bold">Preview</Form.Label>
               <Form.Control
                 as="textarea"
                 rows="10"
                 name="articleContent"
                 id="articleContent"
                 value={article.articleContent}
-                readOnly
+                onChange={onChange}
+                required
               />
             </Form.Group>
-
-            <Button variant="outline-primary col-12" type="Summerize">
-              Summerize
-            </Button>
+            <div className="col-12 text-center">
+                <Button variant="outline-info col-2" type="Summerize">
+                Summerize
+                </Button>
+            </div>
+            
           </Form>
         </Jumbotron>
       </div>
