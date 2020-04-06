@@ -59,7 +59,7 @@ function Home(props) {
   return (
     <div className="container">
       <div className="span12 div-style">
-        <h2 className="h2-style text-info">Home - Article summarizer App</h2>
+        <h2 className="h2-style text-info">Home - Article Summarizer App</h2>
         {showLoading && (
           <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
@@ -108,7 +108,7 @@ function Home(props) {
             </Form.Group>
             <div className="col-12 text-center">
                 <Button variant="outline-info col-2" type="summarize">
-                summarize
+                Summarize
                 </Button>
             </div>
             
