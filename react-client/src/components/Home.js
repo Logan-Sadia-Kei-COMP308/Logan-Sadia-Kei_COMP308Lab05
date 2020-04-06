@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 //import { TextInput } from 'react-native';
 import axios from "axios";
@@ -11,22 +10,25 @@ import { withRouter } from "react-router-dom";
 function Home(props) {
   const [article, setArticle] = useState({
     sentenceNumber: "",
-    uploadFileName: "",
-    uploadFileContent: ""
+    uploadFile: "",
+    uploadFileContent: "",
   });
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/result";
-  let text = "";
+  var text = "";
 
   const readFile = function (event) {
-
     var input = event.target;
+    console.log("input =>" + input.name);
     var reader = new FileReader();
 
     reader.onload = function () {
       text = reader.result;
+      console.log("This is text");
       console.log(text);
     };
+    console.log("file name =>" + input.files[0].name);
+    console.log("Text outside =>" + text);
     reader.readAsText(input.files[0]);
 
     //
@@ -34,14 +36,12 @@ function Home(props) {
     setArticle({ ...article, [event.target.name]: event.target.value });
   };
 
-
   const data = {
     sentenceNumber: article.sentenceNumber,
-    uploadFileName: article.uploadFileName,
-    uploadFileContent: text
-  }
-
-
+    uploadFile: article.uploadFile,
+    uploadFileContent: text,
+  };
+  console.log("Text Again =>" + text);
   const summerize = (e) => {
     setShowLoading(true);
     axios
@@ -51,6 +51,7 @@ function Home(props) {
         props.history.push("/result/");
       })
       .catch((error) => setShowLoading(false));
+    console.log("Inside summerize");
   };
 
   const onChange = (e) => {
@@ -113,7 +114,6 @@ function Home(props) {
 }
 
 export default withRouter(Home);
-
 
 // import React, { useState } from "react";
 // //import { TextInput } from 'react-native';

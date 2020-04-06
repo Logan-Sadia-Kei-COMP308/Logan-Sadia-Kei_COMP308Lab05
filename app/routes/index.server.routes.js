@@ -9,8 +9,5 @@ module.exports = function (app) {
   //handle a get request made to root path
   app.get("/", index.render); //go to http://localhost:3000/
 
-  app.route("/result")
-    .get(index.renderResult)
-    .post(index.renderResult);
-
+  app.route("/result").get(index.renderResult).post(index.renderResult);
 };
