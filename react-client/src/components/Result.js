@@ -17,6 +17,10 @@ function Result(props) {
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/result";
 
+  // retrieve the summary result from Home.js
+  let state = props.location.state;
+  let summary = state.articleData.summary;
+
   useEffect(() => {
     setShowLoading(false);
     //call api
@@ -42,9 +46,17 @@ function Result(props) {
         <Jumbotron>
           <Form.Group>
             <Form.Label>Summary</Form.Label>
-            <Form.Control type="text" id="summary" name="summary" value={article.summary}
+            <Form.Control
+              as="textarea"
+              rows="10"
+              name="summary"
+              id="summary"
+              value={summary}
+              readOnly
             />
+
           </Form.Group>
+
         </Jumbotron>
       </div>
     </div>
