@@ -20,9 +20,6 @@ module.exports = async (articleUrl) => {
     .then(($) => {
       return $("p").text();
     })
-    .then((text) => {
-      return text;
-    })
     .catch((error) => {
       console.error("Error:", error);
     });
