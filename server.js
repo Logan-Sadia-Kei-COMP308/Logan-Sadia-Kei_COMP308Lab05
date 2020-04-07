@@ -1,3 +1,29 @@
+/** 
+ * COMP308Lab05:
+ * Date: Apr 7, 2020
+ * Author: Sadia Rashid, Logan Junhwi Kim, Kei Mizubuchi
+ *
+ *  Sadia Rashid
+ * - Implemented Summarized by URL
+ * - Made overall design improvement
+ * - Worked in pair programming
+ * 
+ * Logan Junhwi Kim
+ * - Implemented Summarized by File
+ * - Made overall design improvement
+ * - Worked in pair programming
+ *
+ * Kei Mizubuchi:
+ * - Analyzed and refactored the start code, and added comment
+ * - Did research on web scraping and fixed bugs
+ * - Worked in pair programming
+ * 
+ * Reference:
+ * background image retrieved from:
+ * https://www.thejakartapost.com/life/2016/05/17/12-indonesian-books-you-should-add-to-your-reading-list.html
+ * 
+ * */
+
 // //////////////////////////
 // The server.js file is the main file of your Node.js application
 // It will load the express.js file as a module to bootstrap your Express application
