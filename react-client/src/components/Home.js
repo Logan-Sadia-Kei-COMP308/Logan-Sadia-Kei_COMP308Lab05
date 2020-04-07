@@ -11,7 +11,6 @@ function Summerize(props) {
     sentenceNumber: "",
     uploadFile: "",
     articleContent: "",
-    articleUrl: "",
   });
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/result";
