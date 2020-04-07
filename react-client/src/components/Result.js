@@ -93,8 +93,11 @@ console.log("State =>" + state.articleData.sentenceNumber);
             />
           </Form.Group>
           <div className="col-12 text-center">
-            <a className="col-2 btn btn-outline-info btn-margin" href="/home">
-              Summarize Next
+            <a className="col-3 btn btn-outline-info btn-margin mx-3" href="/home">
+              Summarize Next by File
+            </a>
+            <a className="col-3 btn btn-outline-info btn-margin mx-3" href="/urlSummerize">
+              Summarize Next by URL
             </a>
           </div>
         </Jumbotron>

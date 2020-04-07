@@ -30,8 +30,8 @@ function App() {
                   <Navbar.Collapse id="basic-navbar-nav">
                       <Nav className="mr-auto">
                           <Nav.Link href="/">Home</Nav.Link>
-                          <Nav.Link href="/home">Summerize File</Nav.Link>
-                          <Nav.Link href="/urlSummerize">Summerize URL</Nav.Link>
+                          <Nav.Link href="/home">Summerize by File</Nav.Link>
+                          <Nav.Link href="/urlSummerize">Summerize by URL</Nav.Link>
                       </Nav>
                   </Navbar.Collapse>
               </Navbar>
