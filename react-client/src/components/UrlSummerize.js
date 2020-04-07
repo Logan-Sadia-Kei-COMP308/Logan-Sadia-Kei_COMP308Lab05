@@ -6,57 +6,40 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { withRouter } from "react-router-dom";
 
-function Summerize(props) {
+function UrlSummerize(props) {
   const [article, setArticle] = useState({
     sentenceNumber: "",
-    uploadFile: "",
-    articleContent: "",
+    uploadUrl: "",
+    // articleContent: "",
   });
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/result";
 
   let data = {
     sentenceNumber: article.sentenceNumber,
-    uploadFile: article.uploadFile,
-    articleContent: article.articleContent,
-  };
-  const readFile = async function (e) {
-    e.persist();
-    setArticle({ ...article, [e.target.name]: e.target.value });
-
-    let input = e.target;
-    let text = await new Response(input.files[0]).text();
-    console.log("text =>" + text);
-
-    setArticle({
-      ...article,
-      [e.target.name]: e.target.value,
-      ["articleContent"]: text,
-    });
+    uploadUrl: article.uploadUrl,
   };
 
   const summarize = (e) => {
     // prevent default event(on submit)
     e.preventDefault();
 
-    data.articleContent = document.getElementById("articleContent").value;
     setShowLoading(true);
-    axios
-      .post(apiUrl, data)
-      .then((response) => {
-        setShowLoading(false);
-
-        props.history.push({
-          pathname: "/result/",
-          state: { articleData: response.data },
-        });
-      })
-      .catch((error) => setShowLoading(false));
+    props.history.push({
+      pathname: "/result/",
+      state: { articleData: data },
+    });
   };
 
   const onChange = (e) => {
-    e.persist();
+    // e.persist();
+    var url = "";
+    if (e.target.name === "uploadUrl") {
+      url = encodeURIComponent(e.target.value);
+      setArticle({ ...article, [e.target.name]: e.target.value });
+    }
     setArticle({ ...article, [e.target.name]: e.target.value });
+    console.log(e.target.name + " ========= " + e.target.value);
   };
 
   return (
@@ -88,21 +71,21 @@ function Summerize(props) {
             </Form.Group>
             <Form.Group>
               <Form.Label className="font-weight-bold">
-                Choose a txt file to summarize
+                Enter a url to summerize
               </Form.Label>
               <Form.Control
-                type="file"
+                type="text"
                 accept=".txt"
-                name="uploadFile"
-                id="uploadFile"
+                name="uploadUrl"
+                id="uploadUrl"
                 required
                 className="custom-file"
-                value={article.uploadFile}
-                onChange={readFile}
+                value={article.uploadUrl}
+                onChange={onChange}
               />
             </Form.Group>
 
-            <Form.Group>
+            {/* <Form.Group>
               <Form.Label className="font-weight-bold">
                 Preview (content here will be summarized)
               </Form.Label>
@@ -114,9 +97,8 @@ function Summerize(props) {
                 className="textarea"
                 value={article.articleContent}
                 onChange={onChange}
-                required
               />
-            </Form.Group>
+            </Form.Group> */}
             <div className="col-12 text-center">
               <Button variant="outline-info col-2" type="summarize">
                 Summarize
@@ -129,4 +111,4 @@ function Summerize(props) {
   );
 }
 
-export default withRouter(Summerize);
+export default withRouter(UrlSummerize);

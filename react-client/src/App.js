@@ -6,6 +6,7 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
+import { Button } from "react-bootstrap";
 //
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "react-bootstrap/Navbar";
@@ -14,6 +15,7 @@ import "./App.css";
 //
 
 import Home from "./components/Home";
+import UrlSummerize from "./components/UrlSummerize";
 import Result from "./components/Result";
 //
 function App() {
@@ -24,14 +26,22 @@ function App() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/home">Summerize File</Nav.Link>
+            <Nav.Link href="/urlSummerize">Summerize URL</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
 
       <div>
-      <Route render={() => <Home />} path="/home" />
-      <Route render={() => <Result />} path="/result" />
+        <Route render={() => <Home />} path="/home" />
+        <Route render={() => <UrlSummerize />} path="/urlSummerize" />
+        <Route render={() => <Result />} path="/result" />
+      </div>
+      <div className="text-center mt-5">
+        <Button href="/home" variant="primary">
+          Go Summarize
+        </Button>
+        <p className="text-center mt-5">hello</p>
       </div>
     </Router>
   );
