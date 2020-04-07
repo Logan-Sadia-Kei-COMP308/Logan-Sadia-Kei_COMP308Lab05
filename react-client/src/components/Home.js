@@ -62,10 +62,13 @@ function Summerize(props) {
   return (
     <div className="container">
       <div className="span12 div-style">
-        <h2 className="h2-style text-info">Home - Article Summarizer App</h2>
+            <div className="h-style bg-dark">        
+                <h2 className="h2-style text-light  ">File Summerizer - Article Summarizer App</h2>
+            </div>
+
         {showLoading && (
           <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
+                      <span className="sr-only bg-dark">Loading...</span>
           </Spinner>
         )}
         <Jumbotron>

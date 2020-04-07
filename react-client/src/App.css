@@ -1,3 +1,13 @@
 .textarea {
     resize: none;
 }
+.bg-img{
+background-image: url(./bg1.jpg);
+background-repeat: no-repeat;
+background-size: 100% 100%;
+opacity: .8;
+}
+.h-style{
+padding:10px;
+
+}

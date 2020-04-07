@@ -103,3 +103,9 @@ tr:nth-child(odd) {
   background: #aed6f1;
   color: #000;
 }
+.bg-img{
+background-image: url(./bg1.jpg);
+background-repeat: no-repeat;
+background-size: 100%;
+opacity: .8;
+}

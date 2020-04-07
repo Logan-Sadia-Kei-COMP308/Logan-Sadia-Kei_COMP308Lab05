@@ -19,7 +19,7 @@ function Result(props) {
 
   // retrieve the summary result from Home.js
   let state = props.location.state;
-console.log("State =>" + state.articleData);
+console.log("State =>" + state.articleData.sentenceNumber);
   let sentenceNumber = state.articleData.sentenceNumber;
   let articleContent = state.articleData.articleContent;
   let summary = state.articleData.summary;
@@ -40,10 +40,13 @@ console.log("State =>" + state.articleData);
   return (
     <div className="container">
       <div className="span12 div-style">
-        <h2 className="h2-style text-info">Result - Article Summarizer App</h2>
+              <div className="h-style bg-dark">
+                  <h2 className="h2-style text-light  ">Result - Article Summarizer App</h2>
+              </div>
+
         {showLoading && (
           <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
+                      <span className="sr-only bg-dark">Loading...</span>
           </Spinner>
         )}
         <Jumbotron>

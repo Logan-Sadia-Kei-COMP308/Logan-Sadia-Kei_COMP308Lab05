@@ -43,11 +43,12 @@ function Summerize(props) {
       .post(apiUrl, data)
       .then((response) => {
         setShowLoading(false);
-
+          console.log(response.data.articleUrl);
         props.history.push({
           pathname: "/result/",
-          state: { articleDataUrl: response.data },
+          state: { articleData: response.data },
         });
+
       })
       .catch((error) => setShowLoading(false));
   };
@@ -60,10 +61,12 @@ function Summerize(props) {
   return (
     <div className="container">
       <div className="span12 div-style">
-        <h2 className="h2-style text-info">Home - Article Summarizer App</h2>
+              <div className="h-style bg-dark">
+                  <h2 className="h2-style text-light  ">Url Summerizer - Article Summarizer App</h2>
+              </div>
         {showLoading && (
           <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
+                      <span className="sr-only bg-dark">Loading...</span>
           </Spinner>
         )}
         <Jumbotron>
@@ -98,22 +101,6 @@ function Summerize(props) {
                 onChange={onChange}
               />
             </Form.Group>
-
-            {/* <Form.Group>
-              <Form.Label className="font-weight-bold">
-                Preview (content here will be summarized)
-              </Form.Label>
-              <Form.Control
-                as="textarea"
-                rows="10"
-                name="articleContent"
-                id="articleContent"
-                className="textarea"
-                value={article.articleContent}
-                onChange={onChange}
-                required
-              />
-            </Form.Group> */}
             <div className="col-12 text-center">
               <Button variant="outline-info col-2" type="summarize">
                 Summarize
