@@ -11,4 +11,5 @@ module.exports = function (app) {
   app.get("/", index.render);
   app.get("/home", index.render);
   app.route("/result").get(index.render).post(index.renderResult);
+app.route("/resultUrl").get(index.render).post(index.renderUrlResult);
 };

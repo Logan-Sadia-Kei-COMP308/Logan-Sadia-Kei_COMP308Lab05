@@ -15,13 +15,13 @@ function Result(props) {
   });
 
   const [showLoading, setShowLoading] = useState(false);
-  const apiUrl = "http://localhost:3000/result";
+  const apiUrl = "http://localhost:3000/resultUrl";
 
   // retrieve the summary result from Home.js
   let state = props.location.state;
-console.log("State =>" + state.articleData);
-  let sentenceNumber = state.articleData.sentenceNumber;
-  let articleContent = state.articleData.articleContent;
+console.log("Stste =>"+state);
+  let sentenceNumber = state.articleDataUrl.sentenceNumber;
+  let articleContent = state.articleDataUrl.articleContent;
   let summary = state.articleData.summary;
 
   useEffect(() => {

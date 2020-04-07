@@ -4,7 +4,7 @@ module.exports = (summarizableArticle, numberOfSentences) => {
     // load dependenceis
     const compromise = require('compromise');
     const natural = require('natural');
-
+console.log("Inside TextSummerizer");
     // define summarize function
     const summarize = (article, maxSentences = 3) => {
         // make setences in lowercase, remove punctuation, and split article into an array

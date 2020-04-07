@@ -1,9 +1,12 @@
 // npm install request --save
 // npm install cheerio --save
 // npm install request-promise
+module.exports = (articleUrl) => {
 const rp = require("request-promise");
 const cheerio = require("cheerio");
 
+var content;
+console.log("Url.=>>>>"+articleUrl);
 const options = {
   transform: (body) => {
     return cheerio.load(body);
@@ -11,7 +14,7 @@ const options = {
 };
 
 rp.get(
-  "https://www.nytimes.com/2020/04/05/world/europe/victor-orban-coronavirus.html",
+  articleUrl,
   options
 )
   .then(($) => {
@@ -19,7 +22,11 @@ rp.get(
   })
   .then((text) => {
     console.log(text);
+    this.content=text;
   })
   .catch((error) => {
     console.error("Error:", error);
   });
+return content;
+
+}
