@@ -45,10 +45,11 @@ exports.renderUrlResult = async function (req, res) {
 
   const sentenceNumber = req.body.sentenceNumber;
   const articleUrl = req.body.articleUrl;
-  const articleContent = await htmlRetreiver(articleUrl);
+    const contents = await htmlRetreiver(articleUrl);
+    const articleContent = contents.replace(/\./g, ". ");
 
   // run summarizer
-  let summary = textSummarizer(articleContent, sentenceNumber);
+    let summary = textSummarizer(articleContent, sentenceNumber);
 
   // display the result
   console.log("=====original text=====");

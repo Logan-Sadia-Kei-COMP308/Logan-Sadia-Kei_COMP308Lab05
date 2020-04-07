@@ -26,6 +26,5 @@ module.exports = async (articleUrl) => {
     .catch((error) => {
       console.error("Error:", error);
     });
-
   return content;
 }
