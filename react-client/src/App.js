@@ -23,7 +23,7 @@ function App() {
   return (
      
     <Router>
-          <div className="bg-img">
+          <div class="bg-t">
               <Navbar bg="dark" expand="lg" variant="dark">
                   <Navbar.Brand>Article Summarizer App</Navbar.Brand>
                   <Navbar.Toggle aria-controls="basic-navbar-nav" />

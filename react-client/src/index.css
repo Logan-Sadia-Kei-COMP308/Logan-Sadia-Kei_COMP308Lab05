@@ -1,3 +1,11 @@
+html {
+    background: url(bg1.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;    
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,6 +13,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-t {
+    background-color: transparent;
 }
 
 code {
@@ -102,10 +114,4 @@ tr:nth-child(odd) {
 .list-bg:hover {
   background: #aed6f1;
   color: #000;
-}
-.bg-img{
-background-image: url(./bg1.jpg);
-background-repeat: no-repeat;
-background-size: 100%;
-opacity: .8;
 }
