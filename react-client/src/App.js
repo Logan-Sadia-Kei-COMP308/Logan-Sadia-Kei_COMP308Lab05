@@ -34,14 +34,9 @@ function App() {
 
       <div>
         <Route render={() => <Home />} path="/home" />
-        <Route render={() => <UrlSummerize />} path="/urlSummerize" />
-        <Route render={() => <Result />} path="/result" />
-      </div>
-      <div className="text-center mt-5">
-        <Button href="/home" variant="primary">
-          Go Summarize
-        </Button>
-        <p className="text-center mt-5">hello</p>
+              <Route render={() => <Result />} path="/result" />
+              <Route render={() => <Result />} path="/result" />
+        <Route render={() => <Home />} path="/" />
       </div>
     </Router>
   );
