@@ -7,10 +7,8 @@ var index = require("../controllers/index.server.controller");
 //handle routing for get and post request
 module.exports = function (app) {
   //handle a get request made to root path
-  app.get("/", index.render); //go to http://localhost:3000/
-
-  app.route("/result")
-    .get(index.render)
-    .post(index.renderResult);
-
+  //go to http://localhost:3000/
+  app.get("/", index.render);
+  app.get("/home", index.render);
+  app.route("/result").get(index.render).post(index.renderResult);
 };

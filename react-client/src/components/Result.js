@@ -11,7 +11,7 @@ function Result(props) {
     sentenceNumber: "",
     uploadFile: "",
     articleContent: "",
-    summary: ""
+    summary: "",
   });
 
   const [showLoading, setShowLoading] = useState(false);
@@ -46,8 +46,10 @@ function Result(props) {
           </Spinner>
         )}
         <Jumbotron>
-        <Form.Group className="text-center">
-            <Form.Label className="text-info font-weight-bold">Number of Sentences for Summary</Form.Label>
+          <Form.Group className="text-center">
+            <Form.Label className="text-info font-weight-bold">
+              Number of Sentences for Summary
+            </Form.Label>
             <Form.Control
               className="text-center"
               type="text"
@@ -58,34 +60,39 @@ function Result(props) {
               readOnly
             />
           </Form.Group>
-        <Form.Group className="text-center">
-            <Form.Label className="text-info font-weight-bold">Original Article</Form.Label>
+          <Form.Group className="text-center">
+            <Form.Label className="text-info font-weight-bold">
+              Original Article
+            </Form.Label>
             <Form.Control
               as="textarea"
               rows="10"
               name="articleContent"
               id="articleContent"
+              className="textarea"
               value={articleContent}
               readOnly
             />
           </Form.Group>
           <Form.Group className="text-center">
-            <Form.Label className="text-info font-weight-bold">Summary</Form.Label>
+            <Form.Label className="text-info font-weight-bold">
+              Summary
+            </Form.Label>
             <Form.Control
               as="textarea"
               rows="7"
               name="summary"
               id="summary"
               value={summary}
+              className="textarea"
               readOnly
             />
           </Form.Group>
           <div className="col-12 text-center">
             <a className="col-2 btn btn-outline-info btn-margin" href="/home">
-                Summarize Next
+              Summarize Next
             </a>
-        </div>
-
+          </div>
         </Jumbotron>
       </div>
     </div>
